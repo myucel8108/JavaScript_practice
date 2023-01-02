@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <script>
+    //시간에 관한 내용
+    // var date1 = new Date();
+    // var h =date1.getHours();
+    // console.log("시간:", h);
+    //  if(h<12 && h>0)
+    //     console.log("오전");
+    // else
+    //     console.log("오후");
+    //숫자를 입력 받아서 짝수면 짝수 홀수면 홀수
+    //prompt는 모두 문자열
+    // var input = Number(prompt("",));
+    // switch(input%2){
+    //     case 0:
+    //         console.log("짝수");
+    //         break;
+    //     default:
+    //         console.log("홀수");
+    //         break;
+    
+    //콘솔창에서 1~30까지 띄어쓰기로 한줄출력
+    // var arr =[];
+    // for(let i=1; i<=30 ; i++){
+    //   arr.push(i);
+    // }
+    // console.log(arr.join(" "));
+    //함수앞에 대문자면 객체를 생성하고 초기화 하기 위한
+    //데이터 같은 느낌이면 new를 쓴다!
+    //this는 new로 생성
+    //일반 함수를 사용하면 전역객체가 될 수 있음
+
+
+    //문제점을 찾아보자!
+    //초기화 함수가 2개 생성된거임
+
+    function Exam(kor,eng,math){
+    this.kor =kor || 0; //기본값을 0으로 지정
+    this.eng = eng|| 0;
+    this.math=math || 0;
+    //생성자가 생성될 때마다 함수가 생김 즉 똑같은 로직을 계속 생성함
+    //상태를 나타내는 값은 개별적으로 연산은 개별화x!
+    // this.total = function(){ 
+    //     return this.kor+ this.eng+ this.math;
+    // }
+
+}
+// 2개생성해서 ==,===해보기
+
+// Exam.prototype.avg= function(){
+//     return this.total()/3;
+// }
+// //참조하는 얘가 똑같은지 확인하기
+// var isEquals = exam.total ===exam1.total;
+// var isEquals2 = exam.avg ===exam1.avg;
+// console.log(isEquals);
+// console.log(isEquals2);
+
+var newlec ={
+	background: "green",
+	borderWidth: 100
+};
+
+var examProtoType ={
+	total: function(){
+	 return this.kor+ this.eng+ this.math;
+	},
+	avg: function(){
+   	return this.total()/3;
+	}
+
+}
+
+Exam.prototype= examProtoType;    //객체형식으로 가능하다.
+
+var exam = new Exam();
+console.log(exam.total());
+var exam1 = new Exam();
+console.log(exam1.total());
+//
+var isEquals = exam.total ===exam1.total;
+
+// var ar =[];
+// ar.total = function(){
+//     return 40;
+// }
+
+// console.log(ar.total());
+
+// var ar1 = [];
+// console.log(ar1.constructor===Array);
+
+
+// Array.prototype.total= function(){ //모든 배열에 다 가져오기
+//     return 40;
+// };
+
+// ar1.constructor.prototype.avg = function(){
+
+//     return console.log("안녕 나야 평균");
+
+// };
+
+// console.log(ar1.constructor.prototype.constructor.prototype);
+
+
+var exam3= Object.create(exam);
+console.log(exam);
+console.log(exam3);
+
+</script>
+</body>
+</html>
