@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
+<body>
+<button id = "btn">hello</button>
+    
+</body>
+<script>
+    var someone ={
+        name: 'dong',
+        whoAmI : function(){
+            console.log(this);
+        }
+
+};
+
+someone.whoAmI(); //호출한부분을 살펴보면 someone이 호출
+ 
+var myWhoAmI = someone.whoAmI;
+myWhoAmI(); //window가 호출한 셈
+
+var bindedWhoAmI = myWhoAmI.bind(someone); //바인드로 묶어주면 걔가 호출한 영향을 가지게 된다.
+bindedWhoAmI();
+
+    var btn = document.getElementById('btn');
+    btn.addEventListener('click',someone.whoAmI); //someone의 whoami를 넘긴게 아니라 그냥 whoami를 넘기고 실행하라는거임
+                                                    //그래서 실행자를 찾아보니 버튼이여서 버튼이 나온거다!
+                                                    //즉 호출한놈===THIS!
+
+    </script>
+
+</html>
