@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src = "./item/boy.js"></script>
+<script src="./panel/game-canvas.js"></script>
+<script src="app.js"></script>
+</head>
+<body>
+    <!-- <img src="./image/char.png"> -->
+    <canvas class="game-canvas" width="700" height="700"></canvas>
+</body>
+<script>
+        //기존방식
+        let kor =20;
+        let eng =30;
+        let obj = {
+        kor:kor, 
+        eng:eng,
+        total:function(){
+            return this.kor+this.eng;
+        }
+    }
+    function print(exam){    
+        console.log("kor:"+exam.kor);
+        console.log("eng:"+exam.eng);
+        console.log("total:"+exam.total());
+
+    }
+
+    print(obj);
+//=================================================
+    //현재방식 위 아래와 같은방식
+    let obj1 = {kor,eng,total(){
+        return this.kor+this.eng;
+    }};
+    function print1({kor,eng,total}){
+        console.log("kor:"+kor);
+        console.log("eng:"+eng);
+        console.log("total:"+total());
+    }
+    print1(obj1);
+
+    function print2(exam){
+        // let kor = exam.kor;
+        // let eng = exam.eng;
+        // let math = exam.total;
+        //중괄호 왼쪽과 오른쪽에 차이
+        //왼쪽은 변수선언 오른쪽은 생성
+        let {kor,eng} =exam;  //이것도 가능
+        //let kor =20;//변수를 선언해줬기 때문에 불가능
+        console.log("kor:"+kor);
+        console.log("eng:"+eng);
+        console.log("total:"+total());
+    }
+    print2(obj1);
+</script>
+
+</html>
