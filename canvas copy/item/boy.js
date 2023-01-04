@@ -42,10 +42,10 @@ class Boy{
             //밑에 방식이 순간이동 방식
             //this.x =x;
             //this.y = y;
-            let w= dx -this.x;
+            let w =dx -this.x;
             let h =dy -this.y;
 
-            let d= Math.sqrt(w*w+h+h);
+            let d= Math.sqrt(w*w+h*h);
            this.vx =w/d;
            this.vy =h/d;
 

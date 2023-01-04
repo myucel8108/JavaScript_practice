@@ -19,7 +19,7 @@ GameCanvas.prototype={
             this.draw();
      },
 
-     update:function(){
+    update:function(){
 
      },
 
