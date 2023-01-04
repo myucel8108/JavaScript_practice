@@ -11,7 +11,7 @@
     <!-- <img src="./image/char.png"> -->
     <canvas class="game-canvas" width="700" height="700"></canvas>
 </body>
-<script>
+<!-- <script>
         //기존방식
         let kor =20;
         let eng =30;
@@ -42,6 +42,8 @@
     }
     print1(obj1);
 
+
+    //----------------------------------------------------
     function print2(exam){
         // let kor = exam.kor;
         // let eng = exam.eng;
@@ -55,6 +57,71 @@
         console.log("total:"+total());
     }
     print2(obj1);
-</script>
+</script> -->
+<script>
 
+    
+    // let obj1 = {kor,eng,total(){
+        //     return this.kor+this.eng;
+        // }}
+        
+        // function print1(exam){
+            //     let {kor, eng, aa=11} = exam;
+            
+            //     console.log("aa : "+aa);
+            
+            //     console.log("kor : "+kor);
+            //     console.log("eng : "+eng);
+            //     console.log("total1 : "+exam.total());
+            // }
+            
+            // print1(obj1)
+            
+    // let kor =20;
+    // let eng = 30;
+
+    // let obj ={
+    //     kor:kor,
+    //     eng:eng,
+
+    //     total:function(){
+
+    //         return this.kor+this.eng;
+            
+    //     }
+    // }
+
+
+    // function print(exam){
+    //     let kor = exam.kor;
+    //     let eng = exam.eng;
+    //     let total = exam.total;
+    //     // console.log(total);
+
+    //     console.log("kor : "+kor);
+    //     console.log("eng : "+eng);
+    //     console.log("total : "+total().bind(exam));
+
+    // }
+
+    // print(obj);
+
+//     let exam ={
+//     kor:10,
+//     eng:20,
+//     math:30,
+//     student:{
+//         name:'newlec',
+//         phone:'010-7278-1537'
+//     }
+
+// };
+// //중첩상태의 객체는 어떻게 꺼낼 것인지
+// let {kor, eng:english, ma=0, student:{name,phone}}= exam;
+// console.log(kor);
+// console.log(phone);
+// console.log(ma);
+
+
+</script>
 </html>

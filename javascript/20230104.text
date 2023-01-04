@@ -1,0 +1,223 @@
+
+기존 변수의 문제점
+1. 변수를 선언하지 않아도 변수?를 사용할 수 있다.
+x=30;
+console.log(x);
+->window.x=30을 의미함
+2.변수를 중복해서 선언해도 문제가 없다.
+
+3.지역변수가 없었다.
+
+4.함수를 통하지 않으면 지역화가 불가능했다.
+
+es6에 변수는 저 모든 단점을 커버할 수 있게 되었다.
+변수의 가시영역이 생겼다.
+지역변수가 생겼다->let
+상수가 생겼다.const
+
+방향코드 생성: 방향을 위한 값을 숫자로 정의하기;
+뱡향을 위한 값을 문자로 정의하기->숫자면 다른사람이 인식하기 힘듬
+->즉 상수를 사용해서 문자의 값을 고정시켜준다
+->그래서 나온것이 const
+const N=1;과 같이 표현하고 상수는 전부 대문자로 적어 다른사람들에게도 알려준다.
+
+Template String
+->문자열을 넣기위해서+를 해줘야했었던 자바나 다른 언어들과는 다르게
+``문자 안에 ${}을 넣고 저 안에 변수를 넣으면 +와 "문자를 사용하지 않고도 표현할 수 있다.
+변수의 정상화가 되었다.
+-> 왜 써야할까?
+let procuct ="<section calss ="p-elect">";//따옴표안에 큰따옴표가 계속 발생하게 되고 이런 오류가 날 수 있다.
+방식1. let procuct ="<section calss =\"p-elect\">"
+방식2. let procuct ='<section calss ="p-elect">'
+이러한 방식들도 해결안되는 문제가 있다.
+let procuct = '<section calss =\"p-elect\">'
+                <h1>?</h1>
+                </section>
+해결방법1.'<section calss ="p-elect">'+
+                <h1>?</h1>+
+                </section>
+해결방법2.'<section calss ="p-elect">'\
+                <h1>?</h1>\
+                </section> 
+단 해결방법2는 띄어쓰기가 없을때만 가능하다.
+내려쓰기와 값을 내려쓸때도 가능하게 된다.
+이 2가지의 문제를 없애기 위한것이  Template             
+또한 
+let className = 'p-elect';
+let title= '스마트폰'
+        '<section calss =">'\
+                <h1>?</h1>\
+                </section> 
+let className = 'p-elect';
+let title= '스마트폰'
+let procuct =`  '<section calss ="`+className`">
+                <h1>?</h1>
+                </section> `
+
+let procuct2 =`  '<section calss =${className}>
+                <h1>?</h1>
+                </section> ` 
+
+String.raw
+->일반문자, 특수문자에 관계없이 문자들이 서로 독립적으로 구분되는 문자열 상수이다.
+
+가시영역이란?
+->
+
+console.log(x);
+var x= 3;
+결과->undefined
+-> 변수 선언은 되었지만 내가 값을 넣지않아도 undefined가 들어감
+
+console.log(x);
+let x=3;
+결과->20230104.html:12 Uncaught ReferenceError: Cannot access 'x' before initialization
+    at 20230104.html:12:17
+-> 변수 선언은 되었지만 값은 쓰레기 값이 나온다
+-> 초기화 되지않은 변수를 사용한 것과 같다.
+-> 코드실행과는 상관없이 변수는 스택에 올라가기 때문에
+
+향상된 Json 객체 표현식
+데이터의 범주: 값+배열+데이터등의 표현법까지
+
+Json객체 표현식
+->객체초기화의 변화
+let kor =30;
+let eng =40;
+let math=50;
+
+var exam ={
+ kor:kor,
+eng:eng,
+math:math
+};
+
+//새로운방식
+var exam1 ={kor,eng,math};
+
+//새로운 함수 방식
+function createExam(kor,eng,math){
+    return{kor,eng,math,total(){}};
+}
+var exam = createExam(10,20,30);
+
+
+
+Computed Property:속성명을 정의할 때 변수를 사용할 수 있게 되었다....?
+
+let style={
+    //백그라운드를 변수로 사용하면?
+    "background-color":"red",
+    width:"100px"
+}
+
+
+let cssAttr ="background-color";
+
+let style = {
+    //둘이 완전히 다른애가된다.
+    [cssAttr]:"red";
+    width:"100px";
+}
+왼쪽에 변수을 넣을 수 있지만 막 바꿔서는 절대 안된다.
+->내가 하루마다 이름을 바꾼다고 생각하면된다
+심지어 변수명이 연산도 가능하다.
+ 
+ 실습
+ let attrName = "kor"; 
+
+ var exam ={
+    [attrName]:10,
+    eng:20,
+    math:30
+    };
+
+    console.log(`kor:${exam.kor}`);
+키가 바뀌면 값이 안나온다.-> 나중에 알려줌! 객체지향을 지원해주기 위해서!
+
+
+object Destructuring
+내 지역변수를 선언하는 방식이 달라지는 것
+
+    기존방식
+   function print(exam){
+        let kor = exam.kor;
+        let eng = exam.eng;
+        console.log("kor : "+kor);
+        console.log("eng : "+eng);
+
+    }
+    새로운 방식
+   function print(exam){
+        let {kor,eng} =exam;
+        console.log("kor : "+kor);
+        console.log("eng : "+eng);
+    }
+
+실습
+
+let attrName = "kor";
+
+
+var exam ={
+    [attrName]:10,
+    eng:20,
+    math:30
+    };
+
+    console.log(`kor:${exam.kor}`);
+
+let kor1 = exam.kor; //하수
+let {kor,english} = exam; //단변수명만 같게!-> 변수명이 달라지면 undefined가 뜬다.
+console.log(kor,english);
+//다른 변수명을 쓰고 싶다면? 누구의 변수명인지 선언해주기!
+let {kor:korean ,eng: english}= exam;
+console.log(korean, english);
+
+//일반적인 다른변수도 포함이 가능하지만 값이 없다면?
+let {kor,english,math=0} = exam;  //선언할때 넣어주는 방식
+//객체가 중첩으로 이루어져있을때
+let {kor,english,math=0} = exam; 
+let exam ={
+    kor :10,
+    eng:20,
+    math:30,
+    student:{
+        name:'newlec',
+        phone:'010-7278-1537'
+    }
+
+};
+//중첩상태의 객체는 어떻게 꺼낼 것인가
+let {kor, eng:english, ma=0, student:{name,phone}}= exam;
+console.log(kor);
+console.log(phone);
+console.log(ma);
+
+
+let {kor, eng:english, ma=0, student}= exam;
+//student는 속성이 아닌 객체를 뽑아왔다 그래서
+let {name , phone} = student;로 가능하다.
+
+es6장점! 
+2진수 8진수 let const  Template String.raw  json의 간편해진문법 
+object Destructuring Computed Property
+
+
+
+
+
+
+
+
+게임만들기
+
+//set인터벌 애니메이션 프레임웍워크 셋타임아웃 3가지로 프레임 동작을 할 수 있다.
+setTimeOut:1회성 알람 
+window.setInterval:매일알람
+
+//10초뒤에 타임아웃 콘솔로그
+        window.setTimeout(function(){
+            console.log("time out");
+
+        },10000);
