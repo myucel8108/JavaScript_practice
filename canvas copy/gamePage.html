@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src = "./item/boy.js"></script>
+<script src="./item/background.js"></script>
+<script src ="./item/boy.js"></script>
 <script src="./panel/game-canvas.js"></script>
 <script src="app.js"></script>
 </head>
@@ -11,117 +12,6 @@
     <!-- <img src="./image/char.png"> -->
     <canvas class="game-canvas" width="700" height="700"></canvas>
 </body>
-<!-- <script>
-        //기존방식
-        let kor =20;
-        let eng =30;
-        let obj = {
-        kor:kor, 
-        eng:eng,
-        total:function(){
-            return this.kor+this.eng;
-        }
-    }
-    function print(exam){    
-        console.log("kor:"+exam.kor);
-        console.log("eng:"+exam.eng);
-        console.log("total:"+exam.total());
-
-    }
-
-    print(obj);
-//=================================================
-    //현재방식 위 아래와 같은방식
-    let obj1 = {kor,eng,total(){
-        return this.kor+this.eng;
-    }};
-    function print1({kor,eng,total}){
-        console.log("kor:"+kor);
-        console.log("eng:"+eng);
-        console.log("total:"+total());
-    }
-    print1(obj1);
-
-
-    //----------------------------------------------------
-    function print2(exam){
-        // let kor = exam.kor;
-        // let eng = exam.eng;
-        // let math = exam.total;
-        //중괄호 왼쪽과 오른쪽에 차이
-        //왼쪽은 변수선언 오른쪽은 생성
-        let {kor,eng} =exam;  //이것도 가능
-        //let kor =20;//변수를 선언해줬기 때문에 불가능
-        console.log("kor:"+kor);
-        console.log("eng:"+eng);
-        console.log("total:"+total());
-    }
-    print2(obj1);
-</script> -->
-<script>
-
-    
-    // let obj1 = {kor,eng,total(){
-        //     return this.kor+this.eng;
-        // }}
-        
-        // function print1(exam){
-            //     let {kor, eng, aa=11} = exam;
-            
-            //     console.log("aa : "+aa);
-            
-            //     console.log("kor : "+kor);
-            //     console.log("eng : "+eng);
-            //     console.log("total1 : "+exam.total());
-            // }
-            
-            // print1(obj1)
-            
-    // let kor =20;
-    // let eng = 30;
-
-    // let obj ={
-    //     kor:kor,
-    //     eng:eng,
-
-    //     total:function(){
-
-    //         return this.kor+this.eng;
-            
-    //     }
-    // }
-
-
-    // function print(exam){
-    //     let kor = exam.kor;
-    //     let eng = exam.eng;
-    //     let total = exam.total;
-    //     // console.log(total);
-
-    //     console.log("kor : "+kor);
-    //     console.log("eng : "+eng);
-    //     console.log("total : "+total().bind(exam));
-
-    // }
-
-    // print(obj);
-
-//     let exam ={
-//     kor:10,
-//     eng:20,
-//     math:30,
-//     student:{
-//         name:'newlec',
-//         phone:'010-7278-1537'
-//     }
-
-// };
-// //중첩상태의 객체는 어떻게 꺼낼 것인지
-// let {kor, eng:english, ma=0, student:{name,phone}}= exam;
-// console.log(kor);
-// console.log(phone);
-// console.log(ma);
-
 
 </script>
 </html>

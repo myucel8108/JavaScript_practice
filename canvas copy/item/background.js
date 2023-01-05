@@ -1,10 +1,11 @@
-function Background(){
-    this.dir =dir;
-}
+class Background{
+    constructor(dir){
 
-Background.prototype ={
+    this.dir =dir || 1;
 
-    scroll:function(dir){ //인자 넣어서 스크롤하기
+    };
+
+    scroll(){ //인자 넣어서 스크롤하기
         switch (dir) {
             case 1:
                 
@@ -24,18 +25,21 @@ Background.prototype ={
 
         
         }
-    },
-    update:function(){
+    }
+    update(){
 
         
-    },
-    draw:function(ctx){
+    }
+    draw(ctx){
         var img = new Image();
         img.src = "./image/map.png";
         img.onload = function(){             
-
+            ctx.drawImage(img,
+                0,0,700,700);
+                //밖에 있는 this로 바꿔달라하자-> boy객체
         }.bind(this);
-    },
+    }
+
 
 
 }

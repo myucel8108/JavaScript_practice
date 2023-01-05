@@ -10,8 +10,8 @@ class Boy{
     this.sx = this.sw*this.ix;
     this.sy=this.sh*this.iy;
     //캐릭터가 있는위치
-    this.x=x ||100;
-    this.y=y ||100;
+    this.x=x ||0;
+    this.y=y ||0;
     //------------ 캐릭터의 벡터
     this.vx=0;
     this.vy=0;
@@ -28,7 +28,7 @@ class Boy{
             img.onload = function(){             
                 ctx.drawImage(img,
                     this.sx,this.sy,this.sw,this.sh 
-                     , this.x ,this.y,this.sw,this.sh);
+                    , this.x ,this.y,this.sw,this.sh);
                     //밖에 있는 this로 바꿔달라하자-> boy객체
             }.bind(this);
         };
@@ -42,12 +42,12 @@ class Boy{
             //밑에 방식이 순간이동 방식
             //this.x =x;
             //this.y = y;
-            let w =dx -this.x;
-            let h =dy -this.y;
+            let w =dx-this.x;
+            let h =dy-this.y;
 
             let d= Math.sqrt(w*w+h*h);
-           this.vx =w/d;
-           this.vy =h/d;
+            this.vx =w/d;
+            this.vy =h/d;
 
         }
 
@@ -73,5 +73,3 @@ class Boy{
 
 
 };
- 
- 
