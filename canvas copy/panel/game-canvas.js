@@ -4,11 +4,11 @@ class GameCanvas{
     constructor(){    
     
         this.dom = document.querySelector(".game-canvas");
-
+        this.dom.focus();
         /** @type {CanvasRenderingContext2D} */ 
         this.ctx = this.dom.getContext("2d");
         this.background = new Background();
-        this.boy = new Boy(100,100);
+        this.boy = new Boy();
         
         //게임 상태 변수
         this.gameover =false;
@@ -16,7 +16,11 @@ class GameCanvas{
         this.pause =false;
         this.frame =1000/60;
         this.dom.onclick = this.clickHandler.bind(this);
+        this.dom.onkeydown=this.keyDownHandler.bind(this);
+        this.dom.onkeyup = this.keyUpHandler.bind(this);
+ 
 }
+
 
 //함수선언
     run(){
@@ -24,7 +28,6 @@ class GameCanvas{
         this.update();
         this.draw();
         
-        console.log("start");
         //밖에서 퍼즈를 걸면 멈추게 하는법
         if(this.pause)
             return;
@@ -40,15 +43,13 @@ class GameCanvas{
     }
 
     update(){
-        this.boy.update();
-    
+            this.background.update();
+            this.boy.update();
     }
 
     draw(){
-    this.background.draw(this.ctx);
-    this.boy.draw(this.ctx); //다시 움직이고
-
-
+        this.background.draw(this.ctx);
+        this.boy.draw(this.ctx); //다시 움직이고
     }
     pause(){
         this.pause = ture;
@@ -66,5 +67,21 @@ class GameCanvas{
     //화면지우기
     this.boy.draw(this.ctx);
     }
-        
+
+    //canvas는 키입력을 기본적으로 안받는데 받게할려면..?
+    keyDownHandler(e){
+        console.log(e);
+        dir =e.key;
+        this.boy.move(dir);
+
+    }
+
+    keyUpHandler(e){
+        console.log(e.key + e.clickHandler);
+
+        this.boy.move(e.key);
+
+
+    }
+
 } 

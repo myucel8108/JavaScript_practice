@@ -10,8 +10,14 @@
 </head>
 <body>
     <!-- <img src="./image/char.png"> -->
-    <canvas class="game-canvas" width="700" height="700"></canvas>
+    <img src="./image/boy.png" id="boy" style="display: none;">
+    <img src="./image/map.png" id ="bg" style="display: none;">
+    <canvas class="game-canvas" width="1000" height="700" tabindex="0"></canvas>
 </body>
+<!-- tabindex="0"란 키보드입력이 가능하지만 키보드를 입력받을수있는 우선순위를 가지고 있지않다.=>window시스템은 키보드 입력을 단 하나만 받을 수 있게 되어 있다.즉 페이지가 열리자마자 키보드활성화된 객체는  스크롤바
 
+tabindex는 그 순서를 정할 수 있고 숫자가 낮을수록 후순위이다.
+또한 시작하자 활성화 시켜주는 방법은 캠퍼스에 force를 쓰는 방법이다.
+-->
 </script>
 </html>
