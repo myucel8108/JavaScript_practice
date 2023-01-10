@@ -13,13 +13,13 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
         this.ctx = this.dom.getContext("2d");
         this.background = new Background();
         this.boy = new Boy();
-        this.enemy = new Enemy();
+        //생성자를 바로 사용하면 바로바로 생성되는것에 문제점
+        this.enemies = [];
         //NaN이 뜸
         //캡슐을 깨지않는 방식 get set을 쓰자
         //게임 상태 변수
         this.boy.speed++;
         console.log(this.boy.speed);
-
         this.gameover =false;
         //일시정지 같은기능 프레임을 끄지않고 멈추게 하는법
         this.pause =false;
@@ -27,6 +27,8 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
         this.dom.onclick = this.clickHandler.bind(this);
         this.dom.onkeydown=this.keyDownHandler.bind(this);
         this.dom.onkeyup = this.keyUpHandler.bind(this);
+        this.enemeyAppearDelay =60;
+        this.dom.enemyOutouScreen = this.enemyOutouScreenHandler.bind(this);
 
 }
 
@@ -43,6 +45,7 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
         
         window.setTimeout(()=>{//지역화가 필요없을때 사용가능
             this.run();
+
         },this.frame);
         //자기에 this가 없어서 자동으로 밖에 this를 쓰게됨
 
@@ -54,13 +57,37 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
     update(){
             this.background.update();
             this.boy.update();
-            this.enemy.update();
-    }
+            for(let enemy of this.enemies){
+                enemy.update();
+            }
 
+            this.enemeyAppearDelay --;
+            if(this.enemeyAppearDelay ==0)
+            {
+            let x= Math.random()*(this.dom.width) -50; //-50~this.dom.width+50;
+            let y =-50;
+            let enemy=new Enemy(x,y);
+            this.enemeyAppearDelay = Math.floor(Math.random()*30+30);
+            //enemyOutScreenHandler
+            // enemy.onOutOfScreen=(en)=>{ 
+            //     this.enemies.splice(this.enemies.indexOf(en),1);
+            // };
+            enemy.onOutOfScreen= this.enemyOutouScreenHandler.bind(this);
+            this.enemies.push(enemy);
+        }   
+
+
+
+
+}
     draw(){
+
         this.background.draw(this.ctx);
+        for(let enemy of this.enemies){
+            enemy.draw(this.ctx);
+            }
         this.boy.draw(this.ctx); //다시 움직이고
-        this.enemy.draw(this.ctx);
+
     }
     pause(){
         this.pause = ture;
@@ -124,6 +151,13 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
 
 
         }
+    }
+
+    enemyOutouScreenHandler(en){
+
+        this.enemies.splice(this.enemies.indexOf(en),1);
+        console.log("삭제됨");
+
     }
 
 }
