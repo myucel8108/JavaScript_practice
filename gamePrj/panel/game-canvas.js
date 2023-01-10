@@ -1,5 +1,6 @@
 import Fruit from "../item/fruit.js";
 import Background from "../item/background.js";
+import Bomb from "../item/bomb.js";
 export default class GameCanvas{
     constructor(){
         this.dom = document.querySelector(".game-canvas");
@@ -19,8 +20,6 @@ export default class GameCanvas{
         this.update();
         this.draw();
 
-        if(this.pause)
-            return;
         
         window.setTimeout(()=>{
             this.run();
@@ -28,8 +27,9 @@ export default class GameCanvas{
 
     }
     update(){
+        this.fruit.update();
         this.background.update();
-
+        
     }
 
     draw(){
