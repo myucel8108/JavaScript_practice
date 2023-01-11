@@ -1,7 +1,10 @@
+import newlec from "../newlec.js";
 export default class Boy{
+
     //인덱스
     //#속성명이 private가 된다.
     #speed;
+
     constructor(x,y){
     //캐릭터 사진
     this.ix=1;
@@ -32,7 +35,18 @@ export default class Boy{
     this.moveUp=false;
     this.moveDown=false;
     this.#speed = 3;
+
+
+
+
+    
 };
+    get centerx(){
+        return this.x+this.img.width/2;
+    }
+    get centery(){
+        return this.y+this.img.height/2;
+    }
     set speed(value){ //set get 사용법
         this.#speed =value;
     }
@@ -45,26 +59,45 @@ export default class Boy{
             this.sy=this.sh*this.iy;
             ctx.drawImage(this.img,
                 this.sx,this.sy,this.sw,this.sh, this.x-this.sw/2 ,this.y-this.sh+15,this.sw,this.sh);
+            // ctx.strokeRect();
+            // ctx.fillRect();
+            
         };
         update(){
-                    //키보드 이동 -> 4방향의 변수를 달라지게 해야함
-                    if(this.moveUp){
-                        this.y-=this.#speed;
-                        this.iy=0;
-                    }
-                    if(this.moveDown){
-                        this.y+=this.#speed;
-                        this.iy=2;
-                    }
-                    if(this.moveRight){                     
-                        this.x+=this.#speed;
-                        this.iy=1;
-                    }
-                    if(this.moveLeft){
-                        this.x-=this.#speed;
-                        this.iy=3;
-                    }
-
+            //충돌판단
+            for(let enemy of newlec.enemies){
+                let ex= enemy.centerx;
+                let ey= enemy.centery;
+                let x= this.x;
+                let y =this.y;
+                let ew = enemy.width;
+                let eh =enemy.height;
+                let d = Math.sqrt(((ex-x)**2)+((ey-y)**2));
+                let r1r2 = 
+            
+                Math.sqrt((ew)**2+(eh)**2)
+                +Math.sqrt((this.sw/2)**2+(this.sh/2)**2);
+                if(d<=r1r2){//멍청이
+                    newlec.enemies.splice(newlec.enemies.indexOf(enemy),1);
+                }
+            }
+            //키보드 이동 -> 4방향의 변수를 달라지게 해야함
+            if(this.moveUp){
+                this.y-=this.#speed;
+                this.iy=0;
+            }
+            if(this.moveDown){
+                this.y+=this.#speed;
+                this.iy=2;
+            }
+            if(this.moveRight){                     
+                this.x+=this.#speed;
+                this.iy=1;
+            }
+            if(this.moveLeft){
+                this.x-=this.#speed;
+                this.iy=3;
+            }
             //벡터가 0이면 반환하기
             if(!(this.moveLeft||this.moveRight||this.moveUp||this.moveDown||false))
             if(this.vx == 0 && this.vy ==0){

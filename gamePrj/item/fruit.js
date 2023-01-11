@@ -1,35 +1,35 @@
 
 export default class fruit{
-    constructor(ix=0, iy=600){
-        this.img = document.querySelector("#apple");
-        this.ix=ix;
-        this.iy=iy;
-        this.speed =(Math.random()*10)*.1;
+    constructor(randfruit){
+        this.img = document.querySelector(randfruit==1?"#apple": randfruit==2?"#peach":randfruit==3?"#basaha":randfruit==4?"#sandia":"#bomb");
+        this.x = Math.random()*1200;    
+        this.y= 700;
+        this.dirx=Math.round(Math.random());
+        this.speed =(Math.random()*3)*.5+1.5;
         this.force = -this.speed*10;
         this.curForce = this.force;
-        this.angle=0;
-        
+        this.score =randfruit==1?50: randfruit==2?80:randfruit==3?60:randfruit==4?30:-300;
     }
     
     update(){
-        this.ix +=0.5;
-        this.iy += Math.sin(this.angle);
-        console.log("이거 하는중?");
-        this.angle+=0.8;
+        if(this.dirx==0){
+            this.x -= this.speed;
+        }
+        else{
+            this.x += this.speed;
+        }
+        this.y += this.curForce+=0.5;
 
-         if(this.iy>=100){
-             this.angle = -this.angle; // if the ball hits the bottom of the canvas reverse the angle.
-           }
-      
+        if(this.y<=-1000){
+             this.curForce = -this.force; // if the ball hits the bottom of the canvas reverse the angle.
+        }
     };
 
     draw(ctx){
-        ctx.drawImage(this.img,this.ix,this.iy);
-        console.log("이건 하는중?2");
-
+        ctx.drawImage(this.img,this.x,this.y);
     }
 
-  
+
     
     
 } 

@@ -2,7 +2,7 @@
 import Boy from "../item/boy.js";
 import Enemy from "../item/enemy.js";
 import Background from "../item/background.js";
-
+import newlec from "../newlec.js";
 export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 때문에 default가 필요하다.
     //생성자
     constructor(){    
@@ -29,6 +29,8 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
         this.dom.onkeyup = this.keyUpHandler.bind(this);
         this.enemeyAppearDelay =60;
         this.dom.enemyOutouScreen = this.enemyOutouScreenHandler.bind(this);
+        console.log(newlec.x+"마지막값이라네");
+        newlec.enemies = this.enemies;
 
 }
 
@@ -68,17 +70,9 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
             let y =-50;
             let enemy=new Enemy(x,y);
             this.enemeyAppearDelay = Math.floor(Math.random()*30+30);
-            //enemyOutScreenHandler
-            // enemy.onOutOfScreen=(en)=>{ 
-            //     this.enemies.splice(this.enemies.indexOf(en),1);
-            // };
             enemy.onOutOfScreen= this.enemyOutouScreenHandler.bind(this);
             this.enemies.push(enemy);
         }   
-
-
-
-
 }
     draw(){
 
@@ -128,12 +122,6 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
     }
     //멈출때 어느 방향에 대해 멈추라고 해야한다.
     keyUpHandler(e){
-        // switch(e.key){
-        //     default:
-        //         this.boy.move(5);
-        //         break;
-            
-        // }
 
         switch(e.key){
             case "ArrowUp":
@@ -156,7 +144,6 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
     enemyOutouScreenHandler(en){
 
         this.enemies.splice(this.enemies.indexOf(en),1);
-        console.log("삭제됨");
 
     }
 

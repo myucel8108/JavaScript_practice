@@ -1,4 +1,3 @@
-
 export default class Background{
     constructor(){
         this.img = document.querySelector("#bg");
