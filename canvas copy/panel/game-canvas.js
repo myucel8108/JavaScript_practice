@@ -102,7 +102,7 @@ export default class GameCanvas{   //하나의 js에 많은 클래스가 있기 
 
     //canvas는 키입력을 기본적으로 안받는데 받게할려면..?
     keyDownHandler(e){
-
+        console.log(e.key);
         switch(e.key){
             case "ArrowUp":
                 this.boy.move(1);
