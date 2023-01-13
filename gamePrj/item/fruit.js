@@ -4,6 +4,7 @@ export default class fruit{
         #centery;
         #width;
         #height;
+        
     constructor(randfruit){
         this.img = document.querySelector(randfruit==1?"#apple": randfruit==2?"#peach":randfruit==3?"#basaha":randfruit==4?"#sandia":"#bomb");
         this.x = Math.random()*1200;    

@@ -10,6 +10,14 @@
 	<script type="module" src="app.js"></script>
 	<!-- <script src="ex1-es6-var.js"></script> -->
 	<!-- <script type="module" src="./ex2-es6-module.js"></script> -->
+	<style>
+		body{
+			margin:0;
+		},
+		.d-done{
+			display: none;
+		}
+	</style>
 	<script>
 // 		let kor=20;
 // 		let eng=30;
@@ -73,6 +81,6 @@
 	<img src="./image/enemy.png" id="enemy" style="display: none;">
 	<img src="./image/explosion.jpg" id="explosion" style="display: none;">
 	<canvas tabindex="0" class="game-canvas" width="900" height="700"></canvas>
-	<canvas tabindex="1" class="rank-canvas" width="900" height="700"></canvas>
+	<canvas tabindex="1" class="rank-canvas d-done" width="900" height="700"></canvas>
 </body>
 </html>

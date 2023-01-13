@@ -17,17 +17,22 @@ export default class GameCanvas{
         this.bg = new Background();
 
         this.dlg = new ConfirmDlg();
-        this.dlg.onclick = ()=>{
-            console.log("clicked");
-        };
+        // this.dlg.onclick = (id)=>{
+        //  console.log("cliecked"+id);
+    
         this.dlg.show();
+        this.dlg.onclick = this.dlgClickHandler.bind(this);
 
         newlec.enemies = this.enemies;
-
+    
         // 게임 상태변수
         this.gameover = false;
         this.pause = false;
-    
+
+        //내가 정의한 이벤트(부모가 하겠지)
+        this.ongameOver =null;
+
+        //내가 처리할 이벤트(자식에게 알려줘야행)
         this.dom.onclick = this.clickHandler.bind(this);
         this.dom.onkeydown = this.keyDownHandler.bind(this);
         this.dom.onkeyup = this.keyUpHandler.bind(this);
@@ -94,14 +99,21 @@ export default class GameCanvas{
         // 게임 종료 또는 계속을 위한 입력을 받거나
         // 바로 캔버스를 전환하가나..
         // 기타 등등...
-
-
+        this.dlg.show();
+        console.log("nolife");
     }
 
     enemyOutOfScreenHandler(en){
         let idx = this.enemies.indexOf(en);
         this.enemies.splice(idx, 1);
     }
+    dlgClickHandler(id){
+        //사용자가 더 이상 게임을 이어갈 의사가 없다함
+        if(this.ongameOver)  //app이 게임이 끝나면 할 일이 있다고 했나?
+             this.ongameOver(); //app에게 canvas가 끝났음을 알림.
+        
+    }
+
     // --- 사용자 입력 event handlers -----------------
     clickHandler(e){
         //this.pause = true;
@@ -113,7 +125,7 @@ export default class GameCanvas{
         this.dlg.notifyClick(e.x, e.y);
 
         //this.boy.move(2);
-        this.boy.moveTo(e.x, e.y);
+        // this.boy.moveTo(e.x, e.y);
         // 화면 지우기
         //this.boy.draw(this.ctx);        
     }

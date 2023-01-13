@@ -21,15 +21,17 @@ export default class GameCanvas{
         this.knifey =0;
         this.slicingFruit =false;
         newlec.fruits = this.fruits;
+        
     }
 
     //함수들
     run(){
         this.update();
         this.draw();
+
         window.setTimeout(()=>{
             this.run();
-        },10);
+        },this.frame);
 
     }
     update(){
@@ -57,15 +59,16 @@ export default class GameCanvas{
             let knife = new Knife(this.knifex,this.knifey);
             knife.update();
             this.knifes.push(knife);
-            if(this.knifes.length==30){
+            
+            if(this.knifes.length==5){
                 this.knifes.shift();
             }
+                
+            
         }
         else{
             this.knifes.shift();
         }
-     
-   
         
     }
 
@@ -74,12 +77,11 @@ export default class GameCanvas{
         for(let fruit of this.fruits){
             fruit.draw(this.ctx); //다시 움직이고
         }
-        if(this.slicingFruit){
+                    
         for(let knife of this.knifes){
             knife.draw(this.ctx);
         }
-        
-    }
+
 }
     pause(){
         this.pause = ture;
@@ -104,11 +106,9 @@ export default class GameCanvas{
                 let fy= fruit.y;
                 let x= this.knifex;
                 let y =this.knifey;
-                let d = Math.floor(Math.sqrt(((x-fx)**2)+((y-fy)**2)));
-                
+                let d = Math.floor(Math.sqrt(((x-fx)**2)+((y-fy)**2)));             
                 let r1r2 = fruit.width;
-                console.log(d);
-                console.log(r1r2);
+
             if(d<=r1r2){
                 newlec.fruits.splice(newlec.fruits.indexOf(fruit),1);
                 

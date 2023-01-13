@@ -28,6 +28,9 @@ export default class Boy {
         // 이건 이제 우리가 손대는 것이 아님.
         this.sw = this.img.width/3;
         this.sh = this.img.height/4;
+
+        //boy의체력이 
+        this.noLife =false;
         
     }
 
@@ -72,8 +75,12 @@ export default class Boy {
                 enemy.chungdol();
                 console.log("충돌발생!");
                 // 위임 받아 놓은 함수(Callback 함수)를 호출한다.
-                if(this.onNoLife)
+
+                //onNoLife는 이벤트 핸들러가 있고
+                //nolife가 참이 아니면
+                if(this.onNoLife && !this.noLife);
                     this.onNoLife();
+                    this.noLife=true;
             }
         }
 
@@ -132,7 +139,6 @@ export default class Boy {
         
             this.walkDelay=10;
         }
- 
         
     }
     
