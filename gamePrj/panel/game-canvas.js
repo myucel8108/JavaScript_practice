@@ -1,6 +1,7 @@
 import Fruit from "../item/fruit.js";
 import Background from "../item/background.js";
 import Knife from "../item/knife.js";
+import newlec from "../newlec.js";
 export default class GameCanvas{
     constructor(){
         this.dom = document.querySelector(".game-canvas");
@@ -19,6 +20,7 @@ export default class GameCanvas{
         this.knifex=0;
         this.knifey =0;
         this.slicingFruit =false;
+        newlec.fruits = this.fruits;
     }
 
     //함수들
@@ -53,6 +55,7 @@ export default class GameCanvas{
 
         if(this.slicingFruit){
             let knife = new Knife(this.knifex,this.knifey);
+            knife.update();
             this.knifes.push(knife);
             if(this.knifes.length==30){
                 this.knifes.shift();
@@ -61,6 +64,7 @@ export default class GameCanvas{
         else{
             this.knifes.shift();
         }
+     
    
         
     }

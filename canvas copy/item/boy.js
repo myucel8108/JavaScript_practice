@@ -35,11 +35,6 @@ export default class Boy{
     this.moveUp=false;
     this.moveDown=false;
     this.#speed = 3;
-
-
-
-
-    
 };
     get centerx(){
         return this.x+this.img.width/2;

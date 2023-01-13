@@ -1,5 +1,10 @@
 
 export default class fruit{
+
+        #centerx;
+        #centery;
+        #width;
+        #height;
     constructor(randfruit){
         this.img = document.querySelector(randfruit==1?"#apple": randfruit==2?"#peach":randfruit==3?"#basaha":randfruit==4?"#sandia":"#bomb");
         this.x = Math.random()*1200;    
@@ -9,8 +14,17 @@ export default class fruit{
         this.force = -this.speed*10;
         this.curForce = this.force;
         this.score =randfruit==1?50: randfruit==2?80:randfruit==3?60:randfruit==4?30:-300;
+        this.#centerx;
+        this.#centery;
+        this.#width;
+        this.#height;
     }
-    
+    get width(){
+        return this.img.width/2;
+    }
+    get height(){
+        return this.img.height/2;
+    }
     update(){
         if(this.dirx==0){
             this.x -= this.speed;
