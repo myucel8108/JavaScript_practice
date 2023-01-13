@@ -74,6 +74,7 @@ export default class Boy{
                 +Math.sqrt((this.sw/2)**2+(this.sh/2)**2);
                 if(d<=r1r2){//멍청이
                     newlec.enemies.splice(newlec.enemies.indexOf(enemy),1);
+                    console.log("충돌")
                 }
             }
             //키보드 이동 -> 4방향의 변수를 달라지게 해야함

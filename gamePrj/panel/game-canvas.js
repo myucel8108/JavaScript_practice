@@ -87,8 +87,8 @@ export default class GameCanvas{
 
     MouseDownHandler(e){
         this.slicingFruit =true;
+        
     };
-
 
     MouseUpHandler(e){
         this.slicingFruit= false;
@@ -98,6 +98,24 @@ export default class GameCanvas{
     MouseMoveHandler(e){
         this.knifex=e.x;
         this.knifey=e.y;
+        if(this.slicingFruit ==true){
+            for(let fruit of newlec.fruits){
+                let fx= fruit.x;
+                let fy= fruit.y;
+                let x= this.knifex;
+                let y =this.knifey;
+                let d = Math.floor(Math.sqrt(((x-fx)**2)+((y-fy)**2)));
+                
+                let r1r2 = fruit.width;
+                console.log(d);
+                console.log(r1r2);
+            if(d<=r1r2){
+                newlec.fruits.splice(newlec.fruits.indexOf(fruit),1);
+                
+            }
+
+        }
+    }
 
     }
     

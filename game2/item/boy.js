@@ -65,7 +65,6 @@ export default class Boy {
             let ey = enemy.y;
             let x = this.x;
             let y = this.y;
-
             let d = Math.sqrt((ex-x)*(ex-x)+(ey-y)*(ey-y));
             let r1r2 = this.sw/2 + enemy.width/2;
 

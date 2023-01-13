@@ -1,6 +1,5 @@
 
 export default class fruit{
-
         #centerx;
         #centery;
         #width;
@@ -18,6 +17,7 @@ export default class fruit{
         this.#centery;
         this.#width;
         this.#height;
+
     }
     get width(){
         return this.img.width/2;
@@ -38,12 +38,7 @@ export default class fruit{
              this.curForce = -this.force; // if the ball hits the bottom of the canvas reverse the angle.
         }
     };
-
     draw(ctx){
         ctx.drawImage(this.img,this.x,this.y);
     }
-
-
-    
-    
 } 
