@@ -47,6 +47,8 @@ export default class GameCanvas {
 
     //연막
     this.bombEffect = false;
+    //연막 초
+    this.count =0;
     //전역객체
     newlec.maincanvas = this.dom; //canvas의 width&&height 값 누구라도 사용할 수 있게 접근하는거
     //객체 그릴 때, 캔버스가 기준으로 만들어 져야 합니다. Canvas의 Width 와 height값 사용해주세요.
@@ -91,6 +93,14 @@ export default class GameCanvas {
       }
       this.fruitsAppearDelay = Math.floor(Math.random() * 30 + 20);
     }
+    if(this.bombEffect){
+        this.count++;
+        if(this.count==180){
+          this.bombEffect=false;
+          this.count=0;
+        }
+      
+    }
   }
   //칼 생성기 이벤트
   renderKnife() {
@@ -110,7 +120,17 @@ export default class GameCanvas {
   }
 
   draw() {
-    this.background.draw(this.ctx); //배경 그리기
+    if(this.bombEffect){
+      this.ctx.save();
+      let shakeX=Math.random()*10;
+      let shakeY=Math.random()*10;
+      this.ctx.translate(shakeX, shakeY);
+      this.background.draw(this.ctx); //배경 그리기
+      this.ctx.restore();
+      
+    }
+    else
+      this.background.draw(this.ctx); //배경 그리기
 
     //과일 조각 그리기
     for (let fruit of this.slicedFruits) {
@@ -121,17 +141,19 @@ export default class GameCanvas {
     for (let fruit of this.fruits) {
       fruit.draw(this.ctx);
     }
+    if(this.bombEffect){
+    this.ctx.drawImage(
+      this.bombEffectImg
+      ,0,0
+    )
 
+    }
     //점수 띄워주기
     this.score.draw(this.ctx);
     //목숨 띄어주기
     this.life.draw(this.ctx);
     // 일시정지 버튼 띄워주기
     this.pauseButton.draw(this.ctx);
-    // this.ctx.drawImage(
-    //   this.bombEffectImg
-    //   ,0,0
-    // )
 
   }
 

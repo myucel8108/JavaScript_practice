@@ -88,8 +88,6 @@ export default class fruit {
     if(this.degree==60)
       this.degree=0;
     this.degree+=0.05;
-
-    this.bombEffects = this.bombEffects;
   }
   draw(ctx) {
     //과일 정 중앙 배치를 위한 코드
@@ -97,6 +95,8 @@ export default class fruit {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.img.width / 2, 0, 2 * Math.PI);
     ctx.stroke();
+
+    //과일 돌리기
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate(this.degree);
@@ -107,14 +107,6 @@ export default class fruit {
       this.x - this.img.width / 2,
       this.y - this.img.height / 2
     );
-    if(this.bombEffects){
-    ctx.drawImage(
-      this.img,
-      this.x - this.bombEffectsImg.width / 2,
-      this.y - this.bombEffectsImg.height / 2
-    );
-    }
-    console.log(this.bombEffects);
     ctx.restore();
   }
 

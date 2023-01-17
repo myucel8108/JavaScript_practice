@@ -27,7 +27,6 @@ export default class SlicedFruit {
     }
     //y속도 물려받기
     this.vy = mainFruit.curForce - Math.floor(Math.random() * 3);
-
     //이미지 이름 받고
     this.imgname = imgName;
     //이미지 불러오고
@@ -35,18 +34,19 @@ export default class SlicedFruit {
     //과즙 이미지
     this.imgCrushname=this.imgname.slice(0, -1)+"s";
     this.imgCrush= document.querySelector(this.imgCrushname);
+    //잘라진애들도 뱅글뱅글
+    this.degree =0;
+
     //과일의 중력 똑같이 받아오고 (fruit this.y바꾸는 상수와 같은 값으로 움직여야함
     //fruit.js 90번 줄 0.3값과 똑같은 값이어야함)
     this.gravity = -0.3; //event 객체의 속도와 동일한 속도로 움직인다.
     //과일 나가는거 확인하는 CallbackFN
     this.onoutOfScreen = null;
   }
-
-
   draw(ctx) {
     ctx.save();
     ctx.translate(this.x,  this.y);
-    ctx.rotate((this.theta));
+    ctx.rotate((this.theta)+135);
     ctx.translate(-this.x,-this.y);
     ctx.drawImage(
       this.imgDom,
@@ -54,14 +54,14 @@ export default class SlicedFruit {
       this.y - this.imgDom.height / 2
     );
     ctx.restore();
-
     ctx.drawImage(  
       this.imgCrush,
       this.mainFruitX - this.imgCrush.width/2,
       this.mainFruitY - this.imgCrush.height/2,
     )
 
-  }
+}
+
   
   //상태 바꾸기
   update() {
@@ -69,9 +69,17 @@ export default class SlicedFruit {
     if (this.onoutOfScreen != null) this.onoutOfScreen(this);
     this.x += this.vx;
     this.vy -= this.gravity;
+    
     this.y += this.vy;
     this.theta=Math.atan2(this.dx, this.dy);
     this.theta *= 180/ Math.PI;
+    console.log(this.theta);
+
+    
+    // if(this.theta<360){
+    //   this.theta=0;}
+    //   this.theta+=0.5;
+    
 
 }
 
