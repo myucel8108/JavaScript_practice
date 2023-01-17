@@ -18,7 +18,6 @@ export default class fruit {
 
     //이미지 불러오기 (이미지 이름 이용)
     this.img = document.querySelector(this.imgName);
-
     this.randfruit = randfruit; //어떤 과일인지 구분하기 위해서 선언
 
     //과일 || 폭탄의 위치
@@ -46,10 +45,9 @@ export default class fruit {
     //안쓰이는 변수들 (사용 안했음)
     this.centerx =this.width; //과일의 중심좌표를 알고싶으신듯
     this.centery= this.height;
-    this.#width; 
     //과일 이미지의 width height를 알고 싶으신듯
     this.#height;
-
+    this.#width; 
     this.onCollisionBomb = null;
     //score깎고 Life깎고 폭탄 사라지고
 
@@ -90,10 +88,11 @@ export default class fruit {
     if(this.degree==60)
       this.degree=0;
     this.degree+=0.05;
+
+    this.bombEffects = this.bombEffects;
   }
   draw(ctx) {
     //과일 정 중앙 배치를 위한 코드
-
     //과일의 영역 확인
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.img.width / 2, 0, 2 * Math.PI);
@@ -108,25 +107,35 @@ export default class fruit {
       this.x - this.img.width / 2,
       this.y - this.img.height / 2
     );
+    if(this.bombEffects){
+    ctx.drawImage(
+      this.img,
+      this.x - this.bombEffectsImg.width / 2,
+      this.y - this.bombEffectsImg.height / 2
+    );
+    }
+    console.log(this.bombEffects);
     ctx.restore();
-
   }
 
   //충돌 검사 (canvas에서 마우스 좌표 받아온다)
   notifyMouseMove(mouseX, mouseY) {
+    this.mouseX= mouseX;
+    this.mouseY=mouseY;
     let objX = this.x;
     let objY = this.y;
     let d = Math.sqrt((objX - mouseX) ** 2 + (objY - mouseY) ** 2);
     //충돌이 됐다는걸 알려주는건 한번만 알려주게 만들기위해 isCollision 변수로 상태 제어
     //이게 없으면 뭔가와 충돌할 시 점수와 목숨이 미친듯이 깎이거나 오르기 때문에 필수일거라 생각했습니다.
     if (d < this.img.width / 2 && !this.isCollision) {
-      this.mouseX= mouseX;
-      this.mouseY=mouseY;
+
       this.isCollision = true;
-      if (this.randfruit == 0)
+      if (this.randfruit == 0){
         // randfruit ==0 은 폭탄
         //내가 충돌이 났으면?
-        this.onCollisionBomb(this); //폭탄 이벤트
+        this.onCollisionBomb(this); 
+      }//폭탄 이벤트
+
       else this.onCollisionFruit(this); //과일 이벤트
     }
   }

@@ -59,7 +59,7 @@ export default class Score {
       this.sx = this.idx * this.sw;
       this.dx = this.dxInit + this.dw * scoreDigit;
       ctx.drawImage(this.img, this.sx, this.sy, this.sw, this.sh,
-         this.dx, this.dy, this.dw, this.dh);
+      this.dx, this.dy, this.dw, this.dh);
     }
 
     //데이터 저장시, score 하단에 최고점수 띄우기

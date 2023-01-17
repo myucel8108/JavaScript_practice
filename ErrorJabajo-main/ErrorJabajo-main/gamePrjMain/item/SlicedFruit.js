@@ -4,6 +4,10 @@ export default class SlicedFruit {
     //xy 좌표
     this.x = mainFruit.x;
     this.y = mainFruit.y;
+    //뒤에 과일 자른 흔적위치를 고정시킬 변수
+    this.SlicedFruitCrushx = mainFruit.x;
+    this.SlicedFruitCrushy = mainFruit.y;
+    //fruit.js에 과일 좌표
     this.mainFruitX= mainFruit.x;
     this.mainFruitY= mainFruit.y;
     //마우스 좌표
@@ -12,8 +16,8 @@ export default class SlicedFruit {
     //각도 계산
     this.dx= -this.mouseX+this.x;
     this.dy=-this.mouseY+this.y;
-    this.theta=Math.atan2(this.dy, this.dx);
-    // this.theta *= 180 / Math.PI;
+    this.theta=Math.atan2(this.dx, this.dy);
+    this.theta *= 180/ Math.PI;
     //x속도 물려받기
     if (mainFruit.dirx) {
       // dirx는 0 또는 1 만 나옴 => 오른쪽 왼쪽 지맘대로 감
@@ -28,6 +32,9 @@ export default class SlicedFruit {
     this.imgname = imgName;
     //이미지 불러오고
     this.imgDom = document.querySelector(this.imgname);
+    //과즙 이미지
+    this.imgCrushname=this.imgname.slice(0, -1)+"s";
+    this.imgCrush= document.querySelector(this.imgCrushname);
     //과일의 중력 똑같이 받아오고 (fruit this.y바꾸는 상수와 같은 값으로 움직여야함
     //fruit.js 90번 줄 0.3값과 똑같은 값이어야함)
     this.gravity = -0.3; //event 객체의 속도와 동일한 속도로 움직인다.
@@ -38,8 +45,8 @@ export default class SlicedFruit {
 
   draw(ctx) {
     ctx.save();
-    ctx.translate( this.x,  this.y);
-    ctx.rotate(this.theta);
+    ctx.translate(this.x,  this.y);
+    ctx.rotate((this.theta));
     ctx.translate(-this.x,-this.y);
     ctx.drawImage(
       this.imgDom,
@@ -47,17 +54,25 @@ export default class SlicedFruit {
       this.y - this.imgDom.height / 2
     );
     ctx.restore();
-    console.log(this.theta*Math.PI / 180);
+
+    ctx.drawImage(  
+      this.imgCrush,
+      this.mainFruitX - this.imgCrush.width/2,
+      this.mainFruitY - this.imgCrush.height/2,
+    )
 
   }
   
   //상태 바꾸기
   update() {
     if (this.y > newlec.maincanvas.height + 200)
-      if (this.onoutOfScreen != null) this.onoutOfScreen(this);
+    if (this.onoutOfScreen != null) this.onoutOfScreen(this);
     this.x += this.vx;
     this.vy -= this.gravity;
     this.y += this.vy;
+    this.theta=Math.atan2(this.dx, this.dy);
+    this.theta *= 180/ Math.PI;
+
 }
 
 }

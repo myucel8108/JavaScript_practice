@@ -13,9 +13,10 @@ export default class GameCanvas {
     this.dom.focus();
     /** @type {CanvasRenderingContext2D} */
     this.ctx = this.dom.getContext("2d");
-
+    this.bombEffectImg = document.querySelector("#bombEffect");
     this.fruits = []; // 과일|| 폭탄 담겨질 배열
     this.slicedFruits = [];
+
     this.background = new Background(); // 배경
     this.gameover = false; //게임 끝날 때
     this.frame = 1000 / 60; //게임 프레임
@@ -44,6 +45,8 @@ export default class GameCanvas {
     this.prevMouseY = 0;
     this.slicingFruit = false;
 
+    //연막
+    this.bombEffect = false;
     //전역객체
     newlec.maincanvas = this.dom; //canvas의 width&&height 값 누구라도 사용할 수 있게 접근하는거
     //객체 그릴 때, 캔버스가 기준으로 만들어 져야 합니다. Canvas의 Width 와 height값 사용해주세요.
@@ -125,6 +128,11 @@ export default class GameCanvas {
     this.life.draw(this.ctx);
     // 일시정지 버튼 띄워주기
     this.pauseButton.draw(this.ctx);
+    // this.ctx.drawImage(
+    //   this.bombEffectImg
+    //   ,0,0
+    // )
+
   }
 
   togglePause() {
@@ -170,6 +178,8 @@ export default class GameCanvas {
         //마우스가 클릭됐다!! 라는것을 과일||폭탄에 알려줘야함
         fruit.notifyMouseMove(e.x, e.y); //마우스의 x y값을 전달해 줌
       }
+
+
     }
   }
   //마우스가 canvas를 나갔을 때 이벤트 아직 완벽하지 않아서 냅둘 예정
@@ -193,15 +203,14 @@ export default class GameCanvas {
     this.score.notifyOnCollisionBoom(bomb);
     //Life 동작 함수 구현 필요
     this.life.update();
+    this.bombEffect = true;
+
   }
 
   CollisionFruitHandler(fruit) {
-    console.log(fruit);
     //이미지이름 문자열에서 문자열을 뽑은 후
     let imgName = fruit.imgName;
     //querySelector로 이미지 바꿔치기 하기 위해서 문자열을 조작 한 후
-    console.log(imgName + "l");
-    console.log(imgName + "r");
     //과일 2개 생성 하고
     let leftFruit = new SlicedFruit(
       fruit,
@@ -213,6 +222,7 @@ export default class GameCanvas {
       imgName + "r",
       Math.floor(Math.random() * 6)
     );
+
     //화면 밖으로 나갈시 없애주는 이벤트 붙인 다음
     leftFruit.onoutOfScreen = this.onSlicedFruitOutOfScreenHandler.bind(this);
     rightFruit.onoutOfScreen = this.onSlicedFruitOutOfScreenHandler.bind(this);
@@ -227,21 +237,18 @@ export default class GameCanvas {
     //클릭된 과일(이벤트 발생 한)을 제거한다
     let idx = this.fruits.indexOf(fruit);
     this.fruits.splice(idx, 1);
-
-    //Score 동작 함수 구현 필요
-    //과일 쪼개지는 기능 구현
   }
 
   onSlicedFruitOutOfScreenHandler(fruit) {
     // 조각난 과일 캔버스 나갈 때 제거하는 이벤트
     let idx = this.slicedFruits.indexOf(fruit);
     this.slicedFruits.splice(idx, 1);
-    // console.log("제거됐다!");
+
   }
   onFullFruitoutOfScreen(fruit) {
     // 완전한 과일 캔버스 나갈 때 제거 하는 이벤트
     let idx = this.fruits.indexOf(fruit);
     this.fruits.splice(idx, 1);
-    // console.log("제거됐다!");
+
   }
 }
