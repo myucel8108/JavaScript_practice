@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=10" />
+    <title>과일닌자~</title>
+
+    <script type="module" src="app.js"></script>
+    <link rel="stylesheet" href="app.css" />
+    <link rel="shorcut icon" href="favicon.ico" />
+  </head>
+  <body>
+    <style>
+      .d-none {
+        display: none;
+      }
+    </style>
+    <img src="image/bg.jpg" id="bg" style="display: none" />
+
+    <img src="image/bomb.png" id="bomb" style="display: none" />
+
+    <img src="image/fruits/apple-w.png" id="apple" style="display: none" />
+    <img src="image/fruits/apple-l.png" id="applel" style="display: none" />
+    <img src="image/fruits/apple-r.png" id="appler" style="display: none" />
+    <img src="image/fruits/apple-s.png" id="apples" style="display: none" />
+
+    <img src="image/fruits/peach-w.png" id="peach" style="display: none" />
+    <img src="image/fruits/peach-l.png" id="peachl" style="display: none" />
+    <img src="image/fruits/peach-r.png" id="peachr" style="display: none" />
+    <img src="image/fruits/peach-s.png" id="peachs" style="display: none" />
+
+    <img src="image/fruits/basaha-w.png" id="basaha" style="display: none" />
+    <img src="image/fruits/basaha-l.png" id="basahal" style="display: none" />
+    <img src="image/fruits/basaha-r.png" id="basahar" style="display: none" />
+    <img src="image/fruits/basaha-s.png" id="basahas" style="display: none" />
+
+    <img src="image/fruits/sandia-w.png" id="sandia" style="display: none" />
+    <img src="image/fruits/sandia-l.png" id="sandial" style="display: none" />
+    <img src="image/fruits/sandia-r.png" id="sandiar" style="display: none" />
+    <img src="image/fruits/sandia-s.png" id="sandias" style="display: none" />
+
+    <img src="image/knife.png" id="knife" style="display: none" />
+
+    <img src="image/score/number.png" id="number" style="display: none" />
+
+    <img src="image/gamelife-0.png" id="life0" style="display: none" />
+    <img src="image/gamelife-1.png" id="life1" style="display: none" />
+    <img src="image/gamelife-2.png" id="life2" style="display: none" />
+    <img src="image/gamelife-3.png" id="life3" style="display: none" />
+
+    <img src="image/gameover.png" id="gameover" style="display: none" />
+    <img src="image/gamestart.png" id="gamestart" style="display: none" />
+
+    <audio src="./sound/kuno_title.mp3" id="home-sound"></audio>
+    <audio
+      src="./sound/MysteriousTotemintheJungle.mp3"
+      id="ongame-sound"
+    ></audio>
+    <audio src="./sound/kuno_castle.mp3" id="endgame-sound"></audio>
+
+    <audio src="./sound/menu.mp3" id="menu-sound"></audio>
+    <audio src="./sound/boom.mp3" id="boom-sound"></audio>
+    <audio src="./sound/splatter.mp3" id="splatter-sound"></audio>
+    <audio src="./sound/throw.mp3" id="throw-sound"></audio>
+
+    <img
+      src="image/pause-interface.png"
+      id="pause-button-sprite"
+      style="display: none"
+    />
+
+    <img src="image/volclick.png" id="volume-button" style="display: none" />
+    <img src="image/home/newgame.png" id="start-button" style="display: none" />
+    <img src="image/home/quit.png" id="exit-button" style="display: none" />
+    <img src="image/home/dojo.png" id="setting-button" style="display: none" />
+    <img src="image/home/home-desc.png" id="home-desc" style="display: none" />
+    <img src="image/home/home-mask.png" id="home-mask" style="display: none" />
+    <img src="image/home/logo.png" id="logo" style="display: none" />
+    <img src="image/home/ninja.png" id="ninja" style="display: none" />
+    <img src="image/home/spark2.png" id="spark" style="display: none" />
+    <img src="image/bombEffect.png" id="bombEffect" style="display: none" />
+    <img src="image/goldAlphabet.png" id="alphabet" style="display: none" />
+
+    <img src="./image/medal/gold.png" id="gold" style="display: none" user-scalable=yes />
+    <img src="./image/medal/silver.png" id="silver" style="display: none" />
+    <img src="./image/medal/bronze.png" id="bronze" style="display: none" />
+
+    <canvas class="home-canvas" width="1280" height="720" tabindex="1"></canvas>
+    <canvas
+      class="game-canvas d-none"
+      width="1280"
+      height="720"
+      tabindex="0"
+    ></canvas>
+    <canvas
+      class="setting-canvas d-none"
+      width="1280"
+      height="720"
+      tabindex="0"
+    ></canvas>
+  </body>
+</html>
