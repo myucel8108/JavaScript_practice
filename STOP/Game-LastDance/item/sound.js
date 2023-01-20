@@ -46,7 +46,7 @@ export default class Sound {
 
   notifyClickVolumePlus(x, y) {
     if (this.x < x && x < this.x + this.cw / 2 && this.y < y && y < this.y + this.ch) {
-      console.log("음향증가" + this.stepIndex);
+      // console.log("음향증가" + this.stepIndex);
       this.stepIndex++;
       if (this.stepIndex > 5) this.stepIndex = 5;
     }
@@ -56,7 +56,7 @@ export default class Sound {
     if (this.x + this.cw / 2 < x && x < this.x + this.cw && this.y < y && y < this.y + this.ch) {
       this.stepIndex--;
       if (this.stepIndex < 0) this.stepIndex = 0;
-      console.log("음향감소" + this.stepIndex);
+      // console.log("음향감소" + this.stepIndex);
     }
   }
 

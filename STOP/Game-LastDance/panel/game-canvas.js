@@ -82,7 +82,7 @@ export default class GameCanvas {
   //함수들
   run() {
     if (this.puaseAndGotoMenu) {
-      console.log("이거 실행됨?");
+      // console.log("이거 실행됨?");
       return;
     }
     if (this.isgameEnding) {

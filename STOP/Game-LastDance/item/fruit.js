@@ -89,6 +89,10 @@ export default class fruit {
     0.5 => 가속도(힘)
     */
     this.y += this.curForce += 0.3;
+
+    if(this.degree ==60)
+      this.degree=0;
+    this.degree+=0.05;
   }
   draw(ctx) {
     //과일 정 중앙 배치를 위한 코드

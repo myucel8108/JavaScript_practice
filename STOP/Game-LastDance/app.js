@@ -15,7 +15,7 @@ window.addEventListener("load", function () {
         .then(function (_) {
           // Autoplay started!
 
-          console.log("이거실행됨?");
+          // console.log("이거실행됨?");
           clearInterval(autoplayVideoInterval);
         })
         .catch(function (error) {

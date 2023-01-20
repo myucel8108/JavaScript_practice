@@ -75,11 +75,13 @@ export default class PauseButton {
       if (this.spriteX != 180) {
         this.spriteX += 64;
         this.buttonX -= 3;
+        this.pause = false;
       } else {
         this.spriteX -= 64;
         this.buttonX += 3;
+        this.pause = true;
       }
-      this.pause = true;
+      
       this.onClick();
     }
 
